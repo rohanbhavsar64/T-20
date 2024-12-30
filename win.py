@@ -69,7 +69,4 @@ match_df=match_df[match_df['runs_left']>=0]
 match_df['x1']=match_df['runs_x_x']-match_df['runs_x_y']
 match_df['winner']=match_df['x1'].apply(lambda x:1 if x >= 0 else 0)
 df1=match_df[['battingTeam_x','bowlingTeam_x','city_y','runs_left','balls_left','wickets','runs_x_y','crr','rrr','winner','last_five_runs']]
-df1=df1.dropna()
-x=df1.drop(columns='winner')
-y=df1['winner']
 st.write(match_df)
