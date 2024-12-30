@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+scikit-learn
+matplotlib
+plotly
+bs4
+requests
+keras
+tensorflow
