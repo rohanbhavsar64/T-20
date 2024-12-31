@@ -11,7 +11,7 @@ import pickle
 # Load flag data
 sf = pd.read_csv('flags_iso.csv')
 
-st.header('ODI MATCH ANALYSIS')
+st.header('T20 MATCH ANALYSIS')
 st.sidebar.header('Analysis')
 
 selected_section = st.sidebar.radio('Select a Section:', ('Score Comparison', 'Innings Progression', 'Win Probability', 'Current Predictor'))
