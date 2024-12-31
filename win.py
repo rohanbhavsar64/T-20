@@ -213,4 +213,4 @@ fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['win'], mode='lines
 fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines'))
 fig.update_layout(title='Target-' + str(target))
 
-st.write(fig.show())
+st.write(fig)
