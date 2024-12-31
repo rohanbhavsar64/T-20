@@ -16,7 +16,7 @@ st.sidebar.header('Analysis')
 
 # Score Comparison
 o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)')
-url = st.text_input(
+h = st.text_input(
     'Enter the URL (ESPN CRICINFO > Select Match > Click On Overs):',
     'https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison'
 )
