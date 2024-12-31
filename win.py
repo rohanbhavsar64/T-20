@@ -218,5 +218,45 @@ fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='line
 fig.update_layout(title='Target-' + str(target))
 
 st.write(fig)
+import plotly.graph_objects as go
+
+# Create the figure
+fig = go.Figure()
+
+# Add the win probability line
+fig.add_trace(go.Scatter(
+    x=temp_df['end_of_over'], 
+    y=temp_df['win'], 
+    mode='lines', 
+    name="Win Probability",
+    line=dict(color='blue', width=2)  # Customize line color and width
+))
+
+# Add horizontal line at 50%
+fig.add_shape(
+    type="line",
+    x0=temp_df['end_of_over'].min(),
+    x1=temp_df['end_of_over'].max(),
+    y0=50,
+    y1=50
+)
+
+# Update the layout
+fig.update_layout(
+    title="Win Probability Chart",
+    xaxis_title="End of Over",
+    yaxis_title="Probability (%)",
+    yaxis=dict(range=[0, 100], tickvals=[0, 50, 100], ticktext=["0%", "50%", "100%"]),
+    xaxis=dict(title="End of Over"),
+    showlegend=False,  # Hide legend for a cleaner look
+    annotations=[
+        dict(x=temp_df['end_of_over'].min(), y=100, text="100%", showarrow=False, font=dict(size=12)),
+        dict(x=temp_df['end_of_over'].max(), y=100, text="100%", showarrow=False, font=dict(size=12)),
+        dict(x=temp_df['end_of_over'].mean(), y=50, text="50%", showarrow=False, font=dict(size=12)),
+    ]
+)
+
+# Display the figure in Streamlit
+st.write(fig)
 
 
