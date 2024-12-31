@@ -187,7 +187,12 @@ if o==20:
     gf=df[['battingTeam_x','bowlingTeam_x','city_y','runs_left','balls_left','wickets','runs_x_y','crr','rrr','last_five_runs','match_id']]
 else:
     gf=df[['battingTeam_x','bowlingTeam_x','city_y','runs_left','balls_left','wickets','runs_x_y','crr','rrr','last_five_runs','match_id']].iloc[:o]
-    
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=df['over'], y=df['score'], mode='lines',name=gf['battingTeam_x'].values[0]))
+fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',name=gf['bowlingTeam_x'].values[0]))
+fig.update_layout(title='Score Comperision')
+
+st.write(fig)    
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
     match = match[(match['balls_left']%6 == 0)]
