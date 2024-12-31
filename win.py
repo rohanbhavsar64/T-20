@@ -274,7 +274,7 @@ for win in temp_df['win'].values:
 # Update the layout only once after adding all traces and shapes
 fig.update_layout(
     title="Win Percentage",
-    xaxis_title="End of Over",
+    xaxis_title="Over",
     yaxis={
         "range": [-10, 110],
         "tickvals": [-10, 50, 110],
