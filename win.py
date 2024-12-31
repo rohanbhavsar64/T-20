@@ -203,6 +203,7 @@ fig = go.Figure()
 df['wicket_in_over']=-df['wic']
 fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over']))
 fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over']))
+fig.update_layout(barmode='stack', title='Innings Progression')
 st.write(fig)
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
