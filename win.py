@@ -150,8 +150,8 @@ if o != 50:
         st.markdown("<div style='text-align: right;'>", unsafe_allow_html=True)  # Ensure left alignment
         st.write(str(df['target'].unique()[0]) + '/' + str(df1.iloc[-1, 2]))
         st.write('(' + str(df.iloc[o - 1, 5]) + '/' + '20)' + '    ' + str(df.iloc[o - 1, 3]) + '/' + str(df.iloc[o - 1, 4]))
-        st.text('crr : ' + str(df.iloc[o - 1, 8].round(2)) + '  rrr : ' + str(df.iloc[o - 1, 9].round(2)))
-        st.write(batting_team + ' Required ' + str(df.iloc[o - 1, 7]) + ' runs in ' + str(df.iloc[o - 1, 10]) + ' balls')
+        st.text('crr : ' + str(df.iloc[o - 1, 9].round(2)) + '  rrr : ' + str(df.iloc[o - 1, 10].round(2)))
+        st.write(batting_team + ' Required ' + str(df.iloc[o - 1, 8]) + ' runs in ' + str(df.iloc[o - 1, 11]) + ' balls')
         st.markdown("</div>", unsafe_allow_html=True)
 
 else:
