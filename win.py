@@ -245,7 +245,11 @@ fig.update_layout(
     title="Win Probability Chart",
     xaxis_title="End of Over",
     yaxis_title="Probability (%)",
-    yaxis=dict(range=[0, 100], tickvals=[0, 50, 100], ticktext=["0%", "50%", "100%"]),
+    yaxis=dict(
+        range=[0, 100],
+        tickvals=[0, 50, 100],
+        ticktext=["0%", "50%", "100%"]
+    ),
     xaxis=dict(title="End of Over"),
     showlegend=False,  # Hide legend for a cleaner look
     annotations=[
