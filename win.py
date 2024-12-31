@@ -224,7 +224,7 @@ import plotly.graph_objects as go
 fig = go.Figure()
 
 # Loop through the 'win' values to apply the color logic
-for win in temp_df['win'].values:
+for win in temp_df['win']:
     colors=""
     if win >= 50:
         colors="blue"  # Golden color
