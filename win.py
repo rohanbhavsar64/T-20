@@ -106,9 +106,9 @@ df['runs_left'] = df['target'] - df['score']
 df = df[df['score'] < df['target']]
 df['crr'] = (df['score'] / df['over'])
 df['rrr'] = ((df['target'] - df['score']) / (50 - df['over']))
-df['balls_left'] = 300 - (df['over'] * 6)
+df['balls_left'] = 120 - (df['over'] * 6)
 df['runs'] = df['score'].diff()
-df['last_10'] = df['runs'].rolling(window=10).sum()
+df['last_10'] = df['runs'].rolling(window=4).sum()
 df['wickets_in_over'] = df['wickets'].diff()
 df['last_10_wicket'] = df['wickets_in_over'].rolling(window=10).sum()
 df = df.fillna(20)
@@ -153,7 +153,7 @@ if o != 50:
     with col2:
         st.markdown("<div style='text-align: right;'>", unsafe_allow_html=True)  # Ensure left alignment
         st.write(str(df['target'].unique()[0]) + '/' + str(df1.iloc[-1, 2]))
-        st.write('(' + str(df.iloc[o - 1, 5]) + '/' + '50)' + '    ' + str(df.iloc[o - 1, 3]) + '/' + str(df.iloc[o - 1, 4]))
+        st.write('(' + str(df.iloc[o - 1, 5]) + '/' + '20)' + '    ' + str(df.iloc[o - 1, 3]) + '/' + str(df.iloc[o - 1, 4]))
         st.text('crr : ' + str(df.iloc[o - 1, 8].round(2)) + '  rrr : ' + str(df.iloc[o - 1, 9].round(2)))
         st.write(batting_team + ' Required ' + str(df.iloc[o - 1, 7]) + ' runs in ' + str(df.iloc[o - 1, 10]) + ' balls')
         st.markdown("</div>", unsafe_allow_html=True)
@@ -166,7 +166,7 @@ else:
 
     with col2:
         st.write(str(df['target'].unique()[0]))
-        st.write('(' + str(df.iloc[-1, 5]) + '/' + '50) ' + str(df.iloc[-1, 3]) + '/' + str(df.iloc[-1, 4]))
+        st.write('(' + str(df.iloc[-1, 5]) + '/' + '20) ' + str(df.iloc[-1, 3]) + '/' + str(df.iloc[-1, 4]))
 
 if 'winner' in df.columns and not df['winner'].empty:
     winner = df['winner'].unique()
