@@ -115,7 +115,7 @@ df['wickets_in_over'] = df['wickets'].diff()
 df['last_five_wickets'] = df['wickets_in_over'].rolling(window=4).sum()
 df = df.fillna(20)
 df['match_id'] = 100001
-st.write(df)
+#st.write(df)
 neg_idx = df1[df1['inng1'] < 0].diff().index
 if not neg_idx.empty:
     df1 = df1[:neg_idx[0]]
@@ -206,18 +206,18 @@ def match_progression(x_df,Id,pipe):
     temp_df = temp_df[['end_of_over','lose','win']]
     return temp_df,target
 temp_df,target = match_progression(gf,100001,pipe)
-temp_df
+#temp_df
 
 
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
-fig = go.Figure()
-fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['win'], mode='lines',name=gf['battingTeam_x'].values[0]))
-fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines',name=gf['bowlingTeam_x'].values[0]))
-fig.update_layout(title='Target-' + str(target))
+#fig = go.Figure()
+#fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['win'], mode='lines',name=gf['battingTeam_x'].values[0]))
+#fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines',name=gf['bowlingTeam_x'].values[0]))
+#fig.update_layout(title='Target-' + str(target))
 
-st.write(fig)
+#st.write(fig)
 fig = go.Figure()
 
 # Loop through the 'win' values to apply conditional logic
