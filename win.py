@@ -197,7 +197,7 @@ fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',name=gf['bo
 fig.update_layout(title='Score Comperision')
 
 st.write(fig)    
-fig=px.bar(data=df,x='over', y='runs_in_over')
+fig=px.bar(df,x='over', y='runs_in_over')
 st.write(fig)   
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
