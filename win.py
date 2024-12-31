@@ -222,7 +222,7 @@ import plotly.graph_objects as go
 
 # Create the figure
 fig = go.Figure()
-colors = []
+colors=""
 
 # Loop through the 'win' values to apply the color logic
 for win in temp_df['win']:
