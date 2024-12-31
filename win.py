@@ -197,26 +197,9 @@ def match_progression(x_df,Id,pipe):
     temp_df['lose'] = np.round(result.T[0]*100,1)
     temp_df['win'] = np.round(result.T[1]*100,1)
     temp_df['end_of_over'] = range(1,temp_df.shape[0]+1)
-    
     target = temp_df['runs_x_y'].values[0]
-    if 'runs_left' in temp_df.columns:
-        runs = list(temp_df['runs_left'].values)  # This should work now
-        print("Runs left:", runs)
-    else:
-        print("Column 'runs_left' does not exist in temp_df.")
-    new_runs = runs[:]
-    runs.insert(0,target)
-    temp_df['runs_after_over'] = np.array(runs)[:-1] - np.array(new_runs)
-    wickets = list(temp_df['wickets'].values)
-    new_wickets = wickets[:]
-    new_wickets.insert(0,10)
-    wickets.append(0)
-    w = np.array(wickets)
-    nw = np.array(new_wickets)
-    temp_df['wickets_in_over'] = (nw - w)[0:temp_df.shape[0]]
-    
     print("Target-",target)
-    temp_df = temp_df[['end_of_over','runs_after_over','wickets_in_over','lose','win']]
+    temp_df = temp_df[['end_of_over','lose','win']]
     return temp_df,target
 temp_df,target = match_progression(gf,100001,pipe)
 temp_df
