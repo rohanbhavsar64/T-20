@@ -12,9 +12,6 @@ import pickle
 sf = pd.read_csv('flags_iso.csv')
 
 st.header('T20 MATCH ANALYSIS')
-st.sidebar.header('Analysis')
-
-# Score Comparison
 o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)')
 h = st.text_input(
     'Enter the URL (ESPN CRICINFO > Select Match > Click On Overs):',
@@ -24,7 +21,6 @@ h = st.text_input(
 if h == 'https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison':
     st.write('Enter Your URL')
 
-url2 = h.replace('match-overs-comparison', 'live-cricket-score')
 r = requests.get(h)
 b = BeautifulSoup(r.text, 'html')
 
