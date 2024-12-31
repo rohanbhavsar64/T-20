@@ -229,7 +229,7 @@ fig.add_trace(go.Scatter(
     y=temp_df['win'], 
     mode='lines', 
     name="Win Probability",
-    line={"color": "yellow", "width": 2}  # Use {} instead of dict()
+    line={"color": "#FFD700", "width": 2}  # Use {} instead of dict()
 ))
 
 # Add horizontal line at 50%
