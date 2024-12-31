@@ -209,46 +209,21 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['win'], mode='lines',name=gf['battingTeam_x'].values[0]))
-fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines',name=gf['bowlingTeam_x'].values[0]))
-fig.update_layout(title='Target-' + str(target))
-
-st.write(fig)
-import plotly.graph_objects as go
-fig = go.Figure()
-
-# Add a single line trace
-fig.add_trace(go.Scatter(
-    x=temp_df['end_of_over'], 
-    y=temp_df['win'], 
-    mode='lines',
-    name="Win Percentage"
-))
-
-# Add a horizontal line at 50
 fig.add_shape(
     type="line",
     x0=temp_df['end_of_over'].min(),
     x1=temp_df['end_of_over'].max(),
     y0=50,
     y1=50,
-    line=dict(color="red", width=1, dash="dash"),
 )
-
-# Update layout for title, axis labels, and range
 fig.update_layout(
     title='Win Prediction Chart',
     xaxis_title="End of Over",
     yaxis_title="Percentage",
-    yaxis_range=[0, 100],  # Correct placement of y-axis range
-    annotations=[
-        dict(x=temp_df['end_of_over'].min(), y=100, text="100%", showarrow=False, font=dict(size=12)),
-        dict(x=temp_df['end_of_over'].max(), y=100, text="100%", showarrow=False, font=dict(size=12)),
-        dict(x=temp_df['end_of_over'].mean(), y=50, text="50%", showarrow=False, font=dict(size=12)),
-    ]
+    yaxis_range=[0, 100]
 )
-
-# Show the plot
+fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines',name=gf['bowlingTeam_x'].values[0]))
+fig.update_layout(title='Target-' + str(target))
 st.write(fig)
 
 
