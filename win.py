@@ -205,6 +205,24 @@ fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'],marker_color='blue',name
 fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'],marker_color='red',name='Wickets'))
 fig.update_layout(barmode='stack', title='Innings Progression')
 st.write(fig)
+fig = go.Figure()
+
+# Add the first bar trace for wickets (positive values)
+fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'], name='Wickets', marker_color='red'))
+
+# Add the second bar trace for runs (positive values)
+fig.add_trace(go.Bar(x=df['over'], y=-df['runs_in_over'], name='Runs', marker_color='blue'))
+
+# Set the layout to be stacked
+fig.update_layout(
+    barmode='stack',
+    title='Reversed Stacked Bar Chart of Wickets and Runs',
+    xaxis_title='Over',
+    yaxis_title='Count'
+)
+
+# Display the figure in Streamlit
+st.write(fig)
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
     match = match[(match['balls_left']%6 == 0)]
