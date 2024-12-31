@@ -207,16 +207,16 @@ fig.update_layout(barmode='stack', title='Innings Progression')
 st.write(fig)
 fig = go.Figure()
 
-# Add the first bar trace for wickets (positive values)
-fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'], name='Wickets', marker_color='red'))
+# Add the first bar trace for runs (positive values)
+fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'], name='Runs', marker_color='blue'))
 
-# Add the second bar trace for runs (positive values)
-fig.add_trace(go.Bar(x=df['over'], y=-df['runs_in_over'], name='Runs', marker_color='blue'))
+# Add the second bar trace for wickets (negative values)
+fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'], name='Wickets', marker_color='red'))
 
 # Set the layout to be stacked
 fig.update_layout(
     barmode='stack',
-    title='Reversed Stacked Bar Chart of Wickets and Runs',
+    title='Stacked Bar Chart of Wickets and Runs',
     xaxis_title='Over',
     yaxis_title='Count'
 )
