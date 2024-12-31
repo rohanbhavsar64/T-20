@@ -183,7 +183,7 @@ df['battingTeam_x']=df['batting_team']
 df['bowlingTeam_x']=df['bowling_team']
 df['runs_x_y']=df['target']
 df['city_y']=df['venue']
-gf=df[['battingTeam_x','bowlingTeam_x','city_y','runs_left','balls_left','wickets','runs_x_y','crr','rrr','last_five_runs']]
+gf=df[['battingTeam_x','bowlingTeam_x','city_y','runs_left','balls_left','wickets','runs_x_y','crr','rrr','last_five_runs','match_id']]
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
     match = match[(match['ball'] == 6)]
