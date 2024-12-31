@@ -254,6 +254,54 @@ fig.update_layout(
     },
     showlegend=False
 )
+    
+# Display the figure in Streamlit
+st.write(fig)
+import plotly.graph_objects as go
+
+# Create the figure
+fig = go.Figure()
+
+# Add the win probability line (above 50%)
+fig.add_trace(go.Scatter(
+    x=temp_df['end_of_over'], 
+    y=temp_df['win'], 
+    mode='lines', 
+    name="Win Probability",
+    line={"color": "blue", "width": 2}
+))
+
+# Add the lose probability line (mirrored above 50% for the lower half)
+fig.add_trace(go.Scatter(
+    x=temp_df['end_of_over'], 
+    y=temp_df['lose'], 
+    mode="lines", 
+    name="Lose Probability (Mirrored)", 
+    line={"color": "red", "width": 2},
+    yaxis="y2"  # Map this trace to a secondary y-axis
+))
+
+# Configure the layout
+fig.update_layout(
+    title="Win/Lose Probability Chart",
+    xaxis={"title": "End of Over"},
+    yaxis={
+        "title": "Win Probability (%)",
+        "range": [50, 100],
+        "tickvals": [50, 60, 70, 80, 90, 100],
+        "ticktext": ["50%", "60%", "70%", "80%", "90%", "100%"],
+        "side": "left"
+    },
+    yaxis2={
+        "title": "Lose Probability (%)",
+        "range": [50, 100],
+        "tickvals": [50, 60, 70, 80, 90, 100],
+        "ticktext": ["50%", "60%", "70%", "80%", "90%", "100%"],
+        "side": "right",
+        "overlaying": "y"
+    },
+    showlegend=True
+)
 
 # Display the figure in Streamlit
 st.write(fig)
