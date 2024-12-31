@@ -103,6 +103,10 @@ df['wickets'] = df['wickets'].astype('int')
 df['previous_wickets'] = df['wickets'].shift(1)
 df['previous_wickets'].loc[0] = 0
 df['wic'] = df['wickets'] - df['previous_wickets']
+df['wickets'] = df['wickets'].astype('int')
+df['previous_score'] = df['score'].shift(1)
+df['previous_score'].loc[0] = 0
+df['runs_in_over'] = df['score'] - df['previous_score']
 df['target'] = df['target'].astype('int')
 df['runs_left'] = df['target'] - df['score']
 df = df[df['score'] < df['target']]
@@ -193,6 +197,9 @@ fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',name=gf['bo
 fig.update_layout(title='Score Comperision')
 
 st.write(fig)    
+fig = go.Figure()
+fig.bar(go.Scatter(x=df['over'], y=df['runs_in_over']))
+st.write(fig)   
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
     match = match[(match['balls_left']%6 == 0)]
