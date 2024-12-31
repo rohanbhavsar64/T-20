@@ -275,7 +275,6 @@ for win in temp_df['win'].values:
 fig.update_layout(
     title="Win Percentage",
     xaxis_title="End of Over",
-    yaxis_title="Percentage(%)",
     yaxis={
         "range": [-10, 110],
         "tickvals": [-10, 50, 110],
