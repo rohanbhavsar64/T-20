@@ -218,22 +218,19 @@ fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='line
 fig.update_layout(title='Target-' + str(target))
 
 st.write(fig)
-import plotly.graph_objects as go
-
-# Create the figure
-fig = go.Figure()
-
-# Loop through the 'win' values to apply the color logic
-import plotly.graph_objects as go
-
-# Initialize the figure
 fig = go.Figure()
 
 # Loop through the 'win' values to apply conditional logic
 for win in temp_df['win']:
     if win >= 50:
-        colors = "blue"  # Blue color for wins >= 50
-        # Add a shape for the dashed red line at 50% probability
+        colors = "#87CEEB"  # Blue color for wins >= 50
+        fig.add_trace(go.Scatter(
+            x=temp_df['end_of_over'], 
+            y=temp_df['win'], 
+            mode='lines', 
+            name="Win Probability",
+            line={"color": colors, "width": 2}
+        ))
         fig.add_shape(
             type="line",
             x0=temp_df['end_of_over'].min(),
@@ -243,7 +240,7 @@ for win in temp_df['win']:
             line={"color": "red", "width": 1, "dash": "dash"},
         )
     else:
-        colors = "yellow"  # Yellow color for wins < 50
+        colors ="#FFD700"  # Yellow color for wins < 50
         # Add the trace with the yellow color for win probability
         fig.add_trace(go.Scatter(
             x=temp_df['end_of_over'], 
