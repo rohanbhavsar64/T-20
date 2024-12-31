@@ -17,6 +17,7 @@ with open('pipe.pkl', 'rb') as file:
 sf = pd.read_csv('flags_iso.csv')
 
 st.header('T20 MATCH ANALYSIS')
+o=20
 o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)')
 h = st.text_input(
     'Enter the URL (ESPN CRICINFO > Select Match > Click On Overs):',
@@ -124,7 +125,7 @@ lf = lf[:int(o)]
 st.subheader('Scorecard')
 
 o = int(o)
-if o != 50:
+if o != 20:
     col1, col2 = st.columns([1, 1])
 
     with col1:
