@@ -171,10 +171,17 @@ if 'winner' in df.columns and not df['winner'].empty:
     winner = df['winner'].unique()
     if len(winner) > 0:
         st.write(winner[0] + ' Won')
+import pickle
+# Specify the path to your pickle file
+pickle_file_path = 'pipe.pkl'
+
+with open(pickle_file_path, 'rb') as file:
+    pipe = pickle.load(file)
+
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
     match = match[(match['ball'] == 6)]
-    temp_df = match[['battingTeam_x','bowlingTeam_x','city_y','runs_left','balls_left','wickets','runs_x_y','crr','rrr','winner','last_five_runs']].fillna(0)
+    temp_df = match[['battingTeam','bowlingTeam','city_y','runs_left','balls_left','wickets','runs_x_y','crr','rrr','last_five_runs']].fillna(0)
     temp_df = temp_df[temp_df['balls_left'] != 0]
     if temp_df.empty:
         print("Error: Match is not Existed")
