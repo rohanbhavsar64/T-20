@@ -221,7 +221,7 @@ import plotly.graph_objects as go
 fig = go.Figure()
 
 # Loop through the 'win' values to apply conditional logic
-for win in temp_df['win']:
+for win in temp_df['win'].values:
     if win >= 50:
         fig.add_trace(go.Scatter(
             x=temp_df['end_of_over'], 
