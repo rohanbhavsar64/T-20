@@ -222,11 +222,11 @@ import plotly.graph_objects as go
 
 # Create the figure
 fig = go.Figure()
-colors=""
 
 # Loop through the 'win' values to apply the color logic
 for win in temp_df['win'].values:
-    if win > 50:
+    colors=""
+    if win >= 50:
         colors="#FFD700"  # Golden color
     else:
         colors="red" # Red color
