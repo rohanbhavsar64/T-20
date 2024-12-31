@@ -228,7 +228,7 @@ fig.add_trace(go.Scatter(
     x=temp_df['end_of_over'], 
     y=temp_df['win'], 
     mode='lines', 
-    name="Win Probability",
+    name="Win Probability"
 ))
 
 # Add horizontal line at 50%
