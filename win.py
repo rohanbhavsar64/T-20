@@ -225,7 +225,7 @@ fig = go.Figure()
 colors=""
 
 # Loop through the 'win' values to apply the color logic
-for win in temp_df['win']:
+for win in temp_df['win'].values:
     if win > 50:
         colors="#FFD700"  # Golden color
     else:
