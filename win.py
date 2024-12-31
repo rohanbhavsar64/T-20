@@ -227,9 +227,9 @@ colors=""
 # Loop through the 'win' values to apply the color logic
 for win in temp_df['win']:
     if win > 50:
-        colors.append("#FFD700")  # Golden color
+        colors="#FFD700"  # Golden color
     else:
-        colors.append("red")  # Red color
+        colors="red" # Red color
 # Add the win probability line
 fig.add_trace(go.Scatter(
     x=temp_df['end_of_over'], 
