@@ -197,8 +197,6 @@ fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',name=gf['bo
 fig.update_layout(title='Score Comperision')
 
 st.write(fig)    
-fig=px.bar(df,x='over', y='runs_in_over')
-st.write(fig) 
 fig = go.Figure()
 df['wicket_in_over']=-df['wic']
 fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'],marker_color='blue',name='Runs'))
