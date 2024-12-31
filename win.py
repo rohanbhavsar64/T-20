@@ -311,23 +311,35 @@ import streamlit as st
 # Create the figure
 fig = go.Figure()
 
-# Add the win probability line (above 50%)
+# Initialize lists to store the data for plotting
+win_values = []
+lose_values = []
+
+# Iterate through the DataFrame rows and append values based on the comparison
+for win, lose in zip(temp_df['win'], temp_df['lose']):
+    if win > lose:
+        win_values.append(win)  # If win > lose, append win probability
+        lose_values.append(None)  # Don't show lose probability
+    else:
+        win_values.append(None)  # Don't show win probability
+        lose_values.append(lose)  # If lose > win, append lose probability
+
+# Add the trace for win probability (only where win > lose)
 fig.add_trace(go.Scatter(
     x=temp_df['end_of_over'], 
-    y=temp_df['win'], 
+    y=win_values,  # Show win values where applicable
     mode='lines', 
     name="Win Probability",
     line={"color": "blue", "width": 2}
 ))
 
-# Add the lose probability line (mirrored below 50%)
+# Add the trace for lose probability (only where lose > win)
 fig.add_trace(go.Scatter(
     x=temp_df['end_of_over'], 
-    y=100 - temp_df['lose'],  # Mirror the lose probability
+    y=lose_values,  # Show lose values where applicable
     mode="lines", 
-    name="Lose Probability (Mirrored)", 
-    line={"color": "red", "width": 2},
-    yaxis="y2"  # Map this trace to a secondary y-axis
+    name="Lose Probability",
+    line={"color": "red", "width": 2}
 ))
 
 # Configure the layout
@@ -335,25 +347,17 @@ fig.update_layout(
     title="Win/Lose Probability Chart",
     xaxis={"title": "End of Over"},
     yaxis={
-        "title": "Win Probability (%)",
-        "range": [50, 100],
+        "title": "Probability (%)",
+        "range": [50, 100],  # Set the range for the y-axis between 50 and 100
         "tickvals": [50, 60, 70, 80, 90, 100],
         "ticktext": ["50%", "60%", "70%", "80%", "90%", "100%"],
         "side": "left"
-    },
-    yaxis2={
-        "title": "Lose Probability (%)",
-        "range": [50, 100],
-        "tickvals": [50, 60, 70, 80, 90, 100],
-        "ticktext": ["50%", "60%", "70%", "80%", "90%", "100%"],
-        "side": "right",
-        "overlaying": "y",
-        "showgrid": False  # Disable grid on the secondary axis to avoid visual clutter
     },
     showlegend=True
 )
 
 # Display the figure in Streamlit
 st.write(fig)
+
 
 
