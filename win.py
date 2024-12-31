@@ -248,7 +248,7 @@ fig.update_layout(
     xaxis_title="End of Over",
     yaxis_title="Probability (%)",
     yaxis={
-        "range": [0, 100],
+        "range": [-10, 110],
         "tickvals": [-10,0,10, 20, 30, 40, 50, 60, 70, 80, 90, 100,110],
         "ticktext": [gf['bowlingTeam_x'].values[0],"100%", "90%", "80%", "70%", "60%", "50%", "60%", "70%", "80%", "90%", "100%",gf['battingTeam_x'].values[0]]
     },
