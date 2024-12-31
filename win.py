@@ -209,7 +209,7 @@ temp_df,target = match_progression(gf,100001,pipe)
 #temp_df
 
 
-import matplotlib.pyplot as plt
+
 import plotly.graph_objects as go
 
 #fig = go.Figure()
