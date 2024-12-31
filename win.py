@@ -192,8 +192,8 @@ if o==20:
 else:
     gf=df[['battingTeam_x','bowlingTeam_x','city_y','runs_left','balls_left','wickets','runs_x_y','crr','rrr','last_five_runs','match_id']].iloc[:o]
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=df['over'], y=df['score'], mode='lines',name=gf['battingTeam_x'].values[0]))
-fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',name=gf['bowlingTeam_x'].values[0]))
+fig.add_trace(go.Scatter(x=df['over'], y=df['score'], mode='lines',marker_color='green',name=gf['battingTeam_x'].values[0]))
+fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',marker_color='red',name=gf['bowlingTeam_x'].values[0]))
 fig.update_layout(title='Score Comperision')
 
 st.write(fig)    
@@ -275,9 +275,9 @@ for win in temp_df['win'].values:
 
 # Update the layout only once after adding all traces and shapes
 fig.update_layout(
-    title="Win Probability Chart",
+    title="Win Percentage",
     xaxis_title="End of Over",
-    yaxis_title="Probability (%)",
+    yaxis_title="Percentage(%)",
     yaxis={
         "range": [-10, 110],
         "tickvals": [-10, 50, 110],
