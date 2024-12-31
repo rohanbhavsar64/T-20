@@ -200,7 +200,8 @@ st.write(fig)
 fig=px.bar(df,x='over', y='runs_in_over')
 st.write(fig) 
 fig = go.Figure()
-fig.add_trace(go.bar(x=df['over'], y=(df['wic']*(-1))))
+df['wicket_in_over']=(-1)*df['wic']
+fig.add_trace(go.bar(x=df['over'], y=df['wicket_in_over']))
 fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over']))
 st.write(fig)
 def match_progression(x_df,Id,pipe):
