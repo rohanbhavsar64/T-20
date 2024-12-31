@@ -200,7 +200,7 @@ st.write(fig)
 fig=px.bar(df,x='over', y='runs_in_over')
 st.write(fig) 
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=df['over'], y=df['wic'], mode='markers', markers={"color": "red", "width": 1}))
+fig.add_trace(go.Scatter(x=df['over'], y=df['wic'], mode='markers'))
 fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over']))
 st.write(fig)
 def match_progression(x_df,Id,pipe):
