@@ -211,8 +211,8 @@ import plotly.graph_objects as go
 fig = go.Figure()
 fig.add_shape(
     type="line",
-    x0=temp_df['end_of_over'].min(),
-    x1=temp_df['end_of_over'].max(),
+    x0=0,
+    x1=20,
     y0=50,
     y1=50,
 )
