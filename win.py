@@ -233,7 +233,6 @@ fig.add_shape(
     x1=temp_df['end_of_over'].max(),
     y0=50,
     y1=50,
-    line=dict(color="red", width=1, dash="dash"),
     name="Midpoint Line"
 )
 
