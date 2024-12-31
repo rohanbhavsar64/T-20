@@ -227,9 +227,9 @@ fig = go.Figure()
 for win in temp_df['win'].values:
     colors=""
     if win >= 50:
-        colors="#FFD700"  # Golden color
+        colors="blue"  # Golden color
     else:
-        colors="red" # Red color
+        colors="yellow" # Red color
     fig.add_trace(go.Scatter(
         x=temp_df['end_of_over'], 
         y=temp_df['win'], 
