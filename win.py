@@ -198,7 +198,11 @@ fig.update_layout(title='Score Comperision')
 
 st.write(fig)    
 fig=px.bar(df,x='over', y='runs_in_over')
-st.write(fig)   
+st.write(fig) 
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=df['over'], y=df['wic'], mode='markers', marker={color='red'}))
+fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over']))
+st.write(fig)
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
     match = match[(match['balls_left']%6 == 0)]
