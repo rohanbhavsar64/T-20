@@ -256,7 +256,7 @@ for win in temp_df['win'].values:
         },
         showlegend=False
     )
-st.write(fig)
+    st.write(fig)
 
 
 
