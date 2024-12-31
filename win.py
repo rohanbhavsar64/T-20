@@ -270,7 +270,7 @@ for win in temp_df['win'].values:
             x1=temp_df['end_of_over'].max(),
             y0=50,
             y1=50,
-            line={"color": "red", "width": 0.5, "dash": "dash"},
+            line={"color": "red", "width": 0.01, "dash": "dash"},
         )
 
 # Update the layout only once after adding all traces and shapes
