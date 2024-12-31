@@ -7,6 +7,11 @@ import streamlit as st
 import numpy as np
 import plotly.graph_objects as go
 import pickle
+import pickle
+
+# Load the pipeline from the pipe.pkl file
+with open('pipe.pkl', 'rb') as file:
+    pipe = pickle.load(file)
 
 # Load flag data
 sf = pd.read_csv('flags_iso.csv')
