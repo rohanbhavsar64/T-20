@@ -200,7 +200,7 @@ st.write(fig)
 fig=px.bar(df,x='over', y='runs_in_over')
 st.write(fig) 
 fig = go.Figure()
-df['wicket_in_over']=(-1)*df['wic']
+df['wicket_in_over']=-df['wic']
 fig.add_trace(go.bar(x=df['over'], y=df['wicket_in_over']))
 fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over']))
 st.write(fig)
