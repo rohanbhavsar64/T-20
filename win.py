@@ -169,11 +169,10 @@ else:
     with col2:
         st.write(str(df['target'].unique()[0]))
         st.write('(' + str(df.iloc[-1, 5]) + '/' + '20) ' + str(df.iloc[-1, 3]) + '/' + str(df.iloc[-1, 4]))
-
-if 'winner' in df.columns and not df['winner'].empty:
-    winner = df['winner'].unique()
-    if len(winner) > 0:
-        st.write(winner[0] + ' Won')
+        if 'winner' in df.columns and not df['winner'].empty:
+            winner = df['winner'].unique()
+            if len(winner) > 0:
+                st.write(winner[0] + ' Won')
 import pickle
 # Specify the path to your pickle file
 pickle_file_path = 'pipe.pkl'
