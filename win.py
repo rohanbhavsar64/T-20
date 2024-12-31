@@ -214,3 +214,18 @@ def match_progression(x_df,Id,pipe):
     print("Target-",target)
     temp_df = temp_df[['end_of_over','runs_after_over','wickets_in_over','lose','win']]
     return temp_df,target
+temp_df,target = match_progression(gf,100001,pipe)
+temp_df
+
+
+import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['wickets_in_over'], mode='markers', marker=dict(color='red')))
+fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['win'], mode='lines', line=dict(color='#00a65a', width=4)))
+fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines', line=dict(color='red', width=4)))
+fig.add_trace(go.Bar(x=temp_df['end_of_over'], y=temp_df['runs_after_over']))
+fig.update_layout(title='Target-' + str(target))
+
+st.write(fig.show())
