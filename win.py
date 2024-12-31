@@ -105,7 +105,7 @@ df['target'] = df['target'].astype('int')
 df['runs_left'] = df['target'] - df['score']
 df = df[df['score'] < df['target']]
 df['crr'] = (df['score'] / df['over'])
-df['rrr'] = ((df['target'] - df['score']) / (50 - df['over']))
+df['rrr'] = ((df['target'] - df['score']) / (20 - df['over']))
 df['balls_left'] = 120 - (df['over'] * 6)
 df['runs'] = df['score'].diff()
 df['last_10'] = df['runs'].rolling(window=4).sum()
