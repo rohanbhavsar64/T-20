@@ -215,7 +215,6 @@ fig.update_layout(title='Target-' + str(target))
 
 st.write(fig)
 import plotly.graph_objects as go
-
 fig = go.Figure()
 
 # Add a single line trace
@@ -226,22 +225,22 @@ fig.add_trace(go.Scatter(
     name="Win Percentage"
 ))
 
-# Add annotations for 100 at both ends and 50 at the middle
+# Add a horizontal line at 50
 fig.add_shape(
     type="line",
     x0=temp_df['end_of_over'].min(),
     x1=temp_df['end_of_over'].max(),
     y0=50,
     y1=50,
-    name="Midpoint Line"
+    line=dict(color="red", width=1, dash="dash"),
 )
 
-# Update layout for better visibility
+# Update layout for title, axis labels, and range
 fig.update_layout(
     title='Win Prediction Chart',
     xaxis_title="End of Over",
     yaxis_title="Percentage",
-    yaxis=dict(range=[0, 100]),  # Set y-axis range from 0 to 100
+    yaxis_range=[0, 100],  # Correct placement of y-axis range
     annotations=[
         dict(x=temp_df['end_of_over'].min(), y=100, text="100%", showarrow=False, font=dict(size=12)),
         dict(x=temp_df['end_of_over'].max(), y=100, text="100%", showarrow=False, font=dict(size=12)),
@@ -251,4 +250,5 @@ fig.update_layout(
 
 # Show the plot
 st.write(fig)
+
 
