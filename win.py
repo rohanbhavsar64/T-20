@@ -17,10 +17,10 @@ st.sidebar.header('Analysis')
 selected_section = st.sidebar.radio('Select a Section:', ('Score Comparison', 'Innings Progression', 'Win Probability', 'Current Predictor'))
 
 # Score Comparison
-o = st.number_input('Over No. (Not Greater Than Overs Played in 2nd Innings)', value=50)
-h = st.text_input('URL (ESPN CRICINFO >Select Match > Click On Overs)', value='https://www.espncricinfo.com/series/icc-cricket-world-cup-2023-24-1367856/australia-vs-south-africa-2nd-semi-final-1384438/match-overs-comparison')
+o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)')
+h = st.text_input('URL (ESPN CRICINFO >Select Match > Click On Overs') or 'https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison
 
-if h == 'https://www.espncricinfo.com/series/icc-cricket-world-cup-2023-24-1367856/australia-vs-south-africa-2nd-semi-final-1384438/match-overs-comparison':
+if h == 'https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison':
     st.write('Enter Your URL')
 
 url2 = h.replace('match-overs-comparison', 'live-cricket-score')
@@ -68,10 +68,10 @@ for i in range(len(list)):
     list5.append(b.find_all('th', class_='ds-min-w-max')[2].text)
     list6.append(b.find(class_='ds-flex ds-items-center').text.split(',')[1])
 
-if o == 50:
+if o == 20:
     list7.append(b.find(class_='ds-text-tight-s ds-font-medium ds-truncate ds-text-typo').text.split(' ')[0])
 
-if o == 50:
+if o == 20:
     dict = {'batting_team': list5, 'bowling_team': list4, 'venue': list6, 'score': list, 'wickets': list1, 'over': list2, 'target': list3, 'winner': list7}
 else:
     dict = {'batting_team': list5, 'bowling_team': list4, 'venue': list6, 'score': list, 'wickets': list1, 'over': list2, 'target': list3}
@@ -110,7 +110,7 @@ df['runs'] = df['score'].diff()
 df['last_10'] = df['runs'].rolling(window=10).sum()
 df['wickets_in_over'] = df['wickets'].diff()
 df['last_10_wicket'] = df['wickets_in_over'].rolling(window=10).sum()
-df = df.fillna(50)
+df = df.fillna(20)
 df['match_id'] = 100001
 
 neg_idx = df1[df1['inng1'] < 0].diff().index
