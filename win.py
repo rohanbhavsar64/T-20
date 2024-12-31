@@ -209,24 +209,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 fig = go.Figure()
-fig.add_shape(
-    type="line",
-    x0=0,
-    x1=20,
-    y0=50,
-    y1=50,
-)
-fig.update_layout(
-    title='Win Prediction Chart',
-    xaxis_title="End of Over",
-    yaxis_title="Percentage",
-    yaxis_range=[0, 100]
-)
-for i in range(o):
-    if temp_df['lose'].values[i]>50:
-        fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines',name=gf['bowlingTeam_x'].values[0]))
-    else:
-        fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['win'], mode='lines',name=gf['bowlingTeam_x'].values[0]))
+
 fig.update_layout(title='Target-' + str(target))
 st.write(fig)
 
