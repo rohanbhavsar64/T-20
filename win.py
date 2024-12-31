@@ -167,7 +167,7 @@ else:
         st.write(f"{df['batting_team'].unique()[0]}")
 
     with col2:
-        st.write(str(df1.iloc[-1, 2]) + '/' + str(df1.iloc[-1, 0]))
+        st.write(str(df1.iloc[-1, 0]) + '/' + str(df1.iloc[-1, 2]))
         st.write('(' + str(df.iloc[-1, 5]) + '/' + '20) ' + str(df.iloc[-1, 3]) + '/' + str(df.iloc[-1, 4]))
         if 'winner' in df.columns and not df['winner'].empty:
             winner = df['winner'].unique()
