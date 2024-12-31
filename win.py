@@ -110,7 +110,7 @@ df['balls_left'] = 120 - (df['over'] * 6)
 df['runs'] = df['score'].diff()
 df['last_10'] = df['runs'].rolling(window=4).sum()
 df['wickets_in_over'] = df['wickets'].diff()
-df['last_10_wicket'] = df['wickets_in_over'].rolling(window=10).sum()
+df['last_10_wicket'] = df['wickets_in_over'].rolling(window=4).sum()
 df = df.fillna(20)
 df['match_id'] = 100001
 
