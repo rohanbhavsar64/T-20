@@ -151,7 +151,7 @@ if o != 50:
         st.write(str(df['target'].unique()[0]) + '/' + str(df1.iloc[-1, 2]))
         st.write('(' + str(df.iloc[o - 1, 5]) + '/' + '20)' + '    ' + str(df.iloc[o - 1, 3]) + '/' + str(df.iloc[o - 1, 4]))
         st.text('crr : ' + str(df.iloc[o - 1, 9].round(2)) + '  rrr : ' + str(df.iloc[o - 1, 10].round(2)))
-        st.write(batting_team + ' Required ' + str(df.iloc[o - 1, 9]) + ' runs in ' + str(df.iloc[o - 1, 11]) + ' balls')
+        st.write(batting_team + ' Required ' + str(df.iloc[o - 1, 9]) + ' runs in ' + str(df.iloc[o - 1, 12]) + ' balls')
         st.markdown("</div>", unsafe_allow_html=True)
 
 else:
