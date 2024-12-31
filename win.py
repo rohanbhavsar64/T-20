@@ -222,14 +222,21 @@ import plotly.graph_objects as go
 
 # Create the figure
 fig = go.Figure()
+colors = []
 
+# Loop through the 'win' values to apply the color logic
+for win in temp_df['win']:
+    if win > 50:
+        colors.append("#FFD700")  # Golden color
+    else:
+        colors.append("red")  # Red color
 # Add the win probability line
 fig.add_trace(go.Scatter(
     x=temp_df['end_of_over'], 
     y=temp_df['win'], 
     mode='lines', 
     name="Win Probability",
-    line={"color": "#FFD700", "width": 2}  # Use {} instead of dict()
+    line={"color":colors, "width": 2}  # Use {} instead of dict()
 ))
 
 # Add horizontal line at 50%
