@@ -199,7 +199,11 @@ def match_progression(x_df,Id,pipe):
     temp_df['end_of_over'] = range(1,temp_df.shape[0]+1)
     
     target = temp_df['runs_x_y'].values[0]
-    runs = list(temp_df['runs_left'].values)
+    if 'runs_left' in temp_df.columns:
+        runs = list(temp_df['runs_left'].values)  # This should work now
+        print("Runs left:", runs)
+    else:
+        print("Column 'runs_left' does not exist in temp_df.")
     new_runs = runs[:]
     runs.insert(0,target)
     temp_df['runs_after_over'] = np.array(runs)[:-1] - np.array(new_runs)
