@@ -6,7 +6,7 @@ import requests
 import streamlit as st
 import numpy as np
 import plotly.graph_objects as go
-import pickle
+import plotly.express as px
 import pickle
 
 # Load the pipeline from the pipe.pkl file
@@ -197,8 +197,7 @@ fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',name=gf['bo
 fig.update_layout(title='Score Comperision')
 
 st.write(fig)    
-fig = go.Figure()
-fig.bar(go.Scatter(x=df['over'], y=df['runs_in_over']))
+fig=px.bar(go.Scatter(x=df['over'], y=df['runs_in_over']))
 st.write(fig)   
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
