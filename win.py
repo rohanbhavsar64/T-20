@@ -247,15 +247,19 @@ for win in temp_df['win']:
         },
         showlegend=False
     )
-    else:
-        colors="yellow" # Red color
+   else:
+    colors = "yellow"  # Color when win is not greater than 50 (can use any color you prefer)
+
+    # Add the trace for win probability with conditional coloring
     fig.add_trace(go.Scatter(
         x=temp_df['end_of_over'], 
         y=temp_df['win'], 
         mode='lines', 
         name="Win Probability",
-        line={"color":colors, "width": 2}
+        line={"color": colors, "width": 2}
     ))
+
+    # Add a horizontal dashed line at 50% probability
     fig.add_shape(
         type="line",
         x0=temp_df['end_of_over'].min(),
@@ -264,17 +268,21 @@ for win in temp_df['win']:
         y1=50,
         line={"color": "red", "width": 1, "dash": "dash"},
     )
+
+    # Update the layout of the figure
     fig.update_layout(
         title="Win Probability Chart",
         xaxis_title="End of Over",
         yaxis_title="Probability (%)",
         yaxis={
             "range": [-10, 110],
-            "tickvals": [-10,0,10, 20, 30, 40, 50, 60, 70, 80, 90, 100,110],
-            "ticktext": [gf['bowlingTeam_x'].values[0],"100%", "90%", "80%", "70%", "60%", "50%", "60%", "70%", "80%", "90%", "100%",gf['battingTeam_x'].values[0]]
+            "tickvals": [-10, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+            "ticktext": [gf['bowlingTeam_x'].values[0], "100%", "90%", "80%", "70%", "60%", 
+                         "50%", "60%", "70%", "80%", "90%", "100%", gf['battingTeam_x'].values[0]]
         },
         showlegend=False
     )
+
 st.write(fig)
 
 
