@@ -311,7 +311,6 @@ url = "https://www.gettyimages.co.uk/photos/steve-smith-portrait"
 
 # Fetch the webpage
 response = requests.get(url)
-soup=BeautifulSoup(response.text,'html')
 if response.status_code == 200:
     # Parse the HTML content
     soup = BeautifulSoup(response.content, 'html.parser')
