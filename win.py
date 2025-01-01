@@ -299,7 +299,6 @@ fig.update_layout(
 )
 
 st.write(fig)
-if o==20:
 import requests
 from bs4 import BeautifulSoup
 from PIL import Image
