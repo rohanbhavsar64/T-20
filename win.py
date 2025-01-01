@@ -321,8 +321,9 @@ if (response.status_code == 200) and (o==20):
         print(f"Title attribute: {title}")
     else:
         print("Title attribute not found.")
+    a=title
     title=title.lower().replace(' ','-')
-    st.write(title)
+    #st.write(title)
     # Find the <img> tag for Rohit Sharma
     img_tag = soup.find('img', {'alt': title})
     if img_tag and 'src' in img_tag.attrs:
@@ -336,7 +337,7 @@ if (response.status_code == 200) and (o==20):
             
             # Use Streamlit to display the image
             st.subheader("Man Of The Match")
-            st.image(image,width=128)
+            st.image(image,caption=a,width=128)
         else:
             st.error("Failed to fetch the image.")
     else:
