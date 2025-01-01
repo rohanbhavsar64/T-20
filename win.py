@@ -311,33 +311,6 @@ url = "https://www.gettyimages.co.uk/photos/steve-smith-portrait"
 
 # Fetch the webpage
 response = requests.get(url)
-if response.status_code == 200:
-    # Parse the HTML content
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Find the image tag using its attributes
-    img_tag = soup.find('meta', {'itemprop': 'contentUrl'})
-    if img_tag:
-        img_url = img_tag['content']
-
-        # Download the image
-        img_response = requests.get(img_url)
-        if img_response.status_code == 200:
-            # Open the image using PIL
-            image = Image.open(BytesIO(img_response.content))
-
-            # Display the image using Streamlit
-            st.title("Steve Smith Portrait")
-            st.image(image, caption="Steve Smith of Australia", use_column_width=True)
-        else:
-            st.error("Failed to download the image.")
-    else:
-        st.error("Image tag not found.")
-else:
-    st.error("Failed to fetch the webpage.")
-
-
-
-
-
-
+b=BeautifulSoup(response.text,'html')
+img=b.find(class_='Sam56st0h591Ae5aHxkp').text
+st.write(img)
