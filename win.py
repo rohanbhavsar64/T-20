@@ -300,23 +300,40 @@ fig.update_layout(
 
 st.write(fig)
 
-import streamlit as st
+import requests
+from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
-import requests
+import streamlit as st
 
-# Image URL extracted from the HTML
-image_url = "https://img1.hscicdn.com/image/upload/f_auto,t_h_100_2x/lsci/db/PICTURES/CMS/385800/385819.2.png"
+# URL of the full scorecard page
+url = "https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/full-scorecard"
 
-# Download the image from the URL
-response = requests.get(image_url)
+# Fetch the webpage content
+response = requests.get(url)
 if response.status_code == 200:
-    # Open the image using PIL
-    image = Image.open(BytesIO(response.content))
+    # Parse the HTML content
+    soup = BeautifulSoup(response.content, 'html.parser')
     
-    # Display the image in Streamlit
-    st.title("Rohit Sharma")
-    st.image(image, caption="Rohit Sharma", width=128)
+    # Find the <img> tag for Rohit Sharma
+    img_tag = soup.find('img', {'alt': 'rohit-sharma'})
+    if img_tag and 'src' in img_tag.attrs:
+        img_url = img_tag['src']
+        
+        # Download the image
+        img_response = requests.get(img_url)
+        if img_response.status_code == 200:
+            # Open and display the image
+            image = Image.open(BytesIO(img_response.content))
+            
+            # Use Streamlit to display the image
+            st.title("Rohit Sharma")
+            st.image(image, caption="Rohit Sharma - Profile Image", width=128)
+        else:
+            st.error("Failed to fetch the image.")
+    else:
+        st.error("Could not find the image for Rohit Sharma.")
 else:
-    st.error("Failed to fetch the image.")
+    st.error(f"Failed to fetch the webpage. Status code: {response.status_code}")
+
 
