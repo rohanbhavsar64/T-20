@@ -383,6 +383,10 @@ def get_segments(x, y):
                 segments.append((mid_x, x[i + 1], mid_y, y[i + 1], 'green'))
     return segments
 
+# Attribute lambdas
+get_line_attrs = lambda color, width: {"color": color, "width": width}
+get_shape_attrs = lambda x0, x1, y0, y1, color, width, dash: {"type": "line", "x0": x0, "x1": x1, "y0": y0, "y1": y1, "line": {"color": color, "width": width, "dash": dash}}
+
 # Get line segments
 segments = get_segments(x, y)
 
@@ -392,40 +396,34 @@ for segment in segments:
         x=[segment[0], segment[1]],
         y=[segment[2], segment[3]],
         mode='lines',
-        line=dict(color=segment[4], width=2),
+        line={**get_line_attrs(segment[4], 2)},
         showlegend=False
     ))
 
 # Add dashed line at 50% probability
-fig.add_shape(
-    type="line",
-    x0=x.min(),
-    x1=x.max(),
-    y0=50,
-    y1=50,
-    line=dict(color="blue", width=1, dash="dash")
-)
+fig.add_shape(**get_shape_attrs(x.min(), x.max(), 50, 50, "blue", 1, "dash"))
 
 # Update layout
 fig.update_layout(
     title="Win Percentage Graph",
     xaxis_title="Over",
-    yaxis=dict(
-        range=[-10, 110],
-        tickvals=[-10, 0, 50, 100, 110],
-        ticktext=[
+    yaxis={
+        "range": [-10, 110],
+        "tickvals": [-10, 0, 50, 100, 110],
+        "ticktext": [
             gf['bowlingTeam_x'].values[0],
             '0%',
             "50%",
             '100%',
             gf['battingTeam_x'].values[0]
         ],
-        showgrid=False
-    ),
+        "showgrid": False
+    },
     showlegend=False
 )
 
 st.write(fig)
+
 
 
 
