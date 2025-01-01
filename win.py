@@ -313,10 +313,10 @@ url = "https://www.gettyimages.co.uk/photos/steve-smith-portrait"
 response = requests.get(url)
 if response.status_code == 200:
     # Parse the HTML content
-    soup = BeautifulSoup(response.content, 'html.parser')
+    soup = BeautifulSoup(response.text, 'html.parser')
     
     # Extract the image URL from the meta tag with itemprop="contentUrl"
-    img_tag = soup.find('meta', {'itemprop': 'contentUrl'})
+    img_tag = soup.find('meta', {'itemprop': 'content'})
     if img_tag:
         img_url = img_tag['content']
         
