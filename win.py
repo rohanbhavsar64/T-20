@@ -307,13 +307,13 @@ from io import BytesIO
 import streamlit as st
 
 # Define the URL of the webpage containing the image
-url = "https://www.gettyimages.co.uk/photos/steve-smith-portrait"
+url = "https://www.gettyimages.co.uk/detail/news-photo/steve-smith-of-australia-poses-for-a-portrait-ahead-of-the-news-photo/1713069278"
 
 # Fetch the webpage
 response = requests.get(url)
 if response.status_code == 200:
     # Parse the HTML content
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.content, 'html.parser')
     
     # Extract the image URL from the meta tag with itemprop="contentUrl"
     img_tag = soup.find('meta', {'itemprop': 'content'})
