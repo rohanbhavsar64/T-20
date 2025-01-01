@@ -256,8 +256,8 @@ for win in temp_df['win'].values:
             xaxis_title="Over",
             yaxis={
                 "range": [-10, 110],
-                "tickvals": [-10, 50, 110],
-                "ticktext": [gf['bowlingTeam_x'].values[0], "50%", gf['battingTeam_x'].values[0]],
+                "tickvals": [-10,0,50, 100,110],
+                "ticktext": [gf['bowlingTeam_x'].values[0], '100%',"50%", '100%',gf['battingTeam_x'].values[0]],
                 "showgrid": False 
             },
             showlegend=False
