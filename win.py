@@ -307,7 +307,7 @@ from io import BytesIO
 import streamlit as st
 
 # URL of the full scorecard page
-url = "https://www.espncricinfo.com/series/bangladesh-premier-league-2024-25-1459492/rangpur-riders-vs-sylhet-strikers-4th-match-1459540/full-scorecard"
+url = h.replace('match-overs-comparison','full-scorecard')
 
 # Fetch the webpage content
 response = requests.get(url)
