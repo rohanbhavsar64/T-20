@@ -316,7 +316,7 @@ if response.status_code == 200:
     soup = BeautifulSoup(response.content, 'html.parser')
     
     # Find the <img> tag for Rohit Sharma
-    img_tag = soup.find('img', {'alt': 'rohit-sharma'})
+    img_tag = soup.find('img', {'alt': 'nahid-rana'})
     if img_tag and 'src' in img_tag.attrs:
         img_url = img_tag['src']
         
