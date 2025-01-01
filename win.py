@@ -311,11 +311,11 @@ url = "https://www.espncricinfo.com/series/bangladesh-premier-league-2024-25-145
 
 # Fetch the webpage content
 response = requests.get(url)
-a_tag = soup.find('a', title=True)
 if response.status_code == 200:
     # Parse the HTML content
     soup = BeautifulSoup(response.content, 'html.parser')
     title=''
+    a_tag = soup.find('a', title=True)
     if a_tag:
         title = a_tag['title']
         print(f"Title attribute: {title}")
