@@ -359,6 +359,21 @@ fig.update_layout(
 )
 
 st.write(fig)
+import plotly.graph_objects as go
+
+fig = go.Figure()
+x, y = temp_df['end_of_over'], temp_df['win']
+get_segment = lambda condition: [v if condition(i) else None for i, v in enumerate(y)]
+get_name = lambda condition: "Win >= 50%" if condition else "Win < 50%"
+get_line_attrs = lambda color, width: {"color": color, "width": width}
+get_shape_attrs = lambda color, width, dash: {"type": "line", "x0": x.min(), "x1": x.max(), "y0": 50, "y1": 50, "line": {"color": color, "width": width, "dash": dash}}
+
+fig.add_trace(go.Scatter(x=x, y=get_segment(lambda i: y[i] >= 50), mode='lines', name=get_name(True), line=get_line_attrs("green", 2)))
+fig.add_trace(go.Scatter(x=x, y=get_segment(lambda i: y[i] < 50), mode='lines', name=get_name(False), line=get_line_attrs("red", 2)))
+fig.add_shape(**get_shape_attrs("blue", 1, "dash"))
+fig.update_layout(title="Win Percentage Graph", xaxis_title="Over", yaxis={"range": [-10, 110], "tickvals": [-10, 0, 50, 100, 110], "ticktext": [gf['bowlingTeam_x'].values[0], '0%', "50%", '100%', gf['battingTeam_x'].values[0]], "showgrid": False}, showlegend=True)
+
+st.write(fig)
 
 
 
