@@ -296,6 +296,72 @@ for win in temp_df['win'].values:
 
 
 st.write(fig)
+import plotly.graph_objects as go
+
+fig = go.Figure()
+
+# Data for x (over) and y (win probabilities)
+x = temp_df['end_of_over']
+y = temp_df['win']
+
+# Lambda function to segment data
+get_segment = lambda condition: [v if condition(i) else None for i, v in enumerate(y)]
+
+# Lambda function for trace names
+get_name = lambda condition: "Win >= 50%" if condition else "Win < 50%"
+
+# Generate segments using the lambda function
+above_threshold = get_segment(lambda i: y[i] >= 50)  # Values where win >= 50
+below_threshold = get_segment(lambda i: y[i] < 50)   # Values where win < 50
+
+# Add trace for win >= 50 (green line)
+fig.add_trace(go.Scatter(
+    x=x,
+    y=above_threshold,
+    mode='lines',
+    name=get_name(True),  # Dynamic name for win >= 50
+    line=dict(color='green', width=2)
+))
+
+# Add trace for win < 50 (red line)
+fig.add_trace(go.Scatter(
+    x=x,
+    y=below_threshold,
+    mode='lines',
+    name=get_name(False),  # Dynamic name for win < 50
+    line=dict(color='red', width=2)
+))
+
+# Add dashed line at 50% probability
+fig.add_shape(
+    type="line",
+    x0=x.min(),
+    x1=x.max(),
+    y0=50,
+    y1=50,
+    line=dict(color="blue", width=1, dash="dash"),
+)
+
+# Update layout
+fig.update_layout(
+    title="Win Percentage Graph",
+    xaxis_title="Over",
+    yaxis=dict(
+        range=[-10, 110],
+        tickvals=[-10, 0, 50, 100, 110],
+        ticktext=[
+            gf['bowlingTeam_x'].values[0],
+            '0%',
+            "50%",
+            '100%',
+            gf['battingTeam_x'].values[0]
+        ],
+        showgrid=False
+    ),
+    showlegend=True
+)
+
+st.write(fig)
 
 
 
