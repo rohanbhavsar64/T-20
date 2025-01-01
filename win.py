@@ -300,6 +300,25 @@ fig.update_layout(
 
 st.write(fig)
 
+import streamlit as st
+from PIL import Image
+from io import BytesIO
+import requests
+
+# Extracted URL from the provided HTML
+image_url = "https://www.gettyimages.co.uk/photos/steve-smith-portrait"
+
+# Download the image from the URL
+response = requests.get(image_url)
+if response.status_code == 200:
+    # Open the image using PIL
+    image = Image.open(BytesIO(response.content))
+    
+    # Display the image in Streamlit
+    st.title("Steve Smith Portrait")
+    st.image(image, caption="Steve Smith of Australia - ICC Men's Cricket World Cup 2023", use_column_width=True)
+else:
+    st.error("Failed to fetch the image.")
 
 
 
