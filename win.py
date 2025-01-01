@@ -321,6 +321,7 @@ if response.status_code == 200:
         print(f"Title attribute: {title}")
     else:
         print("Title attribute not found.")
+    title=title.lower().replace(' ','-')
     # Find the <img> tag for Rohit Sharma
     img_tag = soup.find('img', {'alt': title})
     if img_tag and 'src' in img_tag.attrs:
