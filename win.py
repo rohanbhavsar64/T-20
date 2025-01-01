@@ -335,7 +335,7 @@ if (response.status_code == 200) and (o==20):
             image = Image.open(BytesIO(img_response.content))
             
             # Use Streamlit to display the image
-            st.subtitle("Man Of The Match")
+            st.subheader("Man Of The Match")
             st.image(image,width=128)
         else:
             st.error("Failed to fetch the image.")
