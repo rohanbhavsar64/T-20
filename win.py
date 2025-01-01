@@ -299,7 +299,7 @@ fig.update_layout(
 )
 
 st.write(fig)
-
+if o==20:
 import requests
 from bs4 import BeautifulSoup
 from PIL import Image
@@ -311,7 +311,7 @@ url = h.replace('match-overs-comparison','full-scorecard')
 
 # Fetch the webpage content
 response = requests.get(url)
-if response.status_code == 200:
+if (response.status_code == 200) and (o==20):
     # Parse the HTML content
     soup = BeautifulSoup(response.content, 'html.parser')
     title=''
@@ -336,8 +336,8 @@ if response.status_code == 200:
             image = Image.open(BytesIO(img_response.content))
             
             # Use Streamlit to display the image
-            st.title("Rohit Sharma")
-            st.image(image, caption="Rohit Sharma - Profile Image", width=128)
+            st.subtitle("Man Of The Match")
+            st.image(image,width=128)
         else:
             st.error("Failed to fetch the image.")
     else:
