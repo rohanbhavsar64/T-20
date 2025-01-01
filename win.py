@@ -322,7 +322,7 @@ fig.add_trace(go.Scatter(
     x=x,
     y=above_threshold,
     mode='lines',
-    name=gf['batting_team'].values[0],  # Dynamic name for win >= 50
+    name=get_name(true),  # Dynamic name for win >= 50
     line=get_line_attrs("green", 2)  # Dynamic line attributes
 ))
 
@@ -331,7 +331,7 @@ fig.add_trace(go.Scatter(
     x=x,
     y=below_threshold,
     mode='lines',
-    name=gf['bowling_team'].values[0],  # Dynamic name for win < 50
+    name=get_name(false),  # Dynamic name for win < 50
     line=get_line_attrs("red", 2)  # Dynamic line attributes
 ))
 
