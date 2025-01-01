@@ -252,7 +252,7 @@ for win in temp_df['win'].values:
             line={"color": "red", "width": 1, "dash": "dash"},
         )
         fig.update_layout(
-            title="Win Percentage",
+            title="Win Percentage Graph",
             xaxis_title="Over",
             yaxis={
                 "range": [-10, 110],
@@ -282,7 +282,7 @@ for win in temp_df['win'].values:
             line={"color": "red", "width": 0.01, "dash": "dash"},
         )
         fig.update_layout(
-            title="Win Percentage",
+            title="Win Percentage Graph",
             xaxis_title="Over",
             yaxis={
                 "range": [-10, 110],
