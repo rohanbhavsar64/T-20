@@ -314,7 +314,7 @@ get_name = lambda condition: "Win >= 50%" if condition else "Win < 50%"
 get_line_attrs = lambda color, width: {"color": color, "width": width}
 
 # Generate segments using the lambda function
-above_threshold = get_segment(lambda i: y[i] >= 50)  # Values where win >= 50
+above_threshold = get_segment(lambda i: y[i] > 50)  # Values where win >= 50
 below_threshold = get_segment(lambda i: y[i] < 50)   # Values where win < 50
 
 # Add trace for win >= 50 (green line)
