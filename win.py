@@ -251,6 +251,17 @@ for win in temp_df['win'].values:
             y1=50,
             line={"color": "red", "width": 1, "dash": "dash"},
         )
+        fig.update_layout(
+            title="Win Percentage",
+            xaxis_title="Over",
+            yaxis={
+                "range": [-10, 110],
+                "tickvals": [-10, 50, 110],
+                "ticktext": [gf['bowlingTeam_x'].values[0], "50%", gf['battingTeam_x'].values[0]],
+                "showgrid": False 
+            },
+            showlegend=False
+        )
     else:
         # Yellow color for wins < 50
         # Add the trace with the yellow color for win probability
@@ -270,19 +281,17 @@ for win in temp_df['win'].values:
             y1=50,
             line={"color": "red", "width": 0.01, "dash": "dash"},
         )
-
-# Update the layout only once after adding all traces and shapes
-fig.update_layout(
-    title="Win Percentage",
-    xaxis_title="Over",
-    yaxis={
-        "range": [-10, 110],
-        "tickvals": [-10, 50, 110],
-        "ticktext": [gf['bowlingTeam_x'].values[0], "50%", gf['battingTeam_x'].values[0]],
-        "showgrid": False 
-    },
-    showlegend=False
-)
+        fig.update_layout(
+            title="Win Percentage",
+            xaxis_title="Over",
+            yaxis={
+                "range": [-10, 110],
+                "tickvals": [-10, 50, 110],
+                "ticktext": [gf['bowlingTeam_x'].values[0], "50%", gf['battingTeam_x'].values[0]],
+                "showgrid": False 
+            },
+            showlegend=False
+        )
 
 
 
