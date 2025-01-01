@@ -241,7 +241,7 @@ for win in temp_df['win'].values:
             y=temp_df['win'], 
             mode='lines', 
             name="Win Probability",
-            line={"color": "#87CEEB" , "width": 2}
+            line={"color": "green" , "width": 2}
         ))
         fig.add_shape(
             type="line",
@@ -270,7 +270,7 @@ for win in temp_df['win'].values:
             y=temp_df['win'], 
             mode='lines', 
             name="Win Probability",
-            line={"color": "#FFD700", "width": 2}
+            line={"color": "red", "width": 2}
         ))
         # Add the shape for the dashed red line at 50% probability
         fig.add_shape(
@@ -279,7 +279,7 @@ for win in temp_df['win'].values:
             x1=temp_df['end_of_over'].max(),
             y0=50,
             y1=50,
-            line={"color": "red", "width": 0.01, "dash": "dash"},
+            line={"color": "green", "width": 0.01, "dash": "dash"},
         )
         fig.update_layout(
             title="Win Percentage Graph",
