@@ -311,12 +311,18 @@ url = "https://www.espncricinfo.com/series/bangladesh-premier-league-2024-25-145
 
 # Fetch the webpage content
 response = requests.get(url)
+a_tag = soup.find('a', title=True)
 if response.status_code == 200:
     # Parse the HTML content
     soup = BeautifulSoup(response.content, 'html.parser')
-    
+    title=''
+    if a_tag:
+        title = a_tag['title']
+        print(f"Title attribute: {title}")
+    else:
+        print("Title attribute not found.")
     # Find the <img> tag for Rohit Sharma
-    img_tag = soup.find('img', {'alt': 'nahid-rana'})
+    img_tag = soup.find('img', {'alt': title})
     if img_tag and 'src' in img_tag.attrs:
         img_url = img_tag['src']
         
