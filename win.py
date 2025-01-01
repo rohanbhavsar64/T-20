@@ -310,6 +310,9 @@ get_segment = lambda condition: [v if condition(i) else None for i, v in enumera
 # Lambda function for trace names
 get_name = lambda condition: "Win >= 50%" if condition else "Win < 50%"
 
+# Lambda for line attributes
+get_line_attrs = lambda color, width: {"color": color, "width": width}
+
 # Generate segments using the lambda function
 above_threshold = get_segment(lambda i: y[i] >= 50)  # Values where win >= 50
 below_threshold = get_segment(lambda i: y[i] < 50)   # Values where win < 50
@@ -320,7 +323,7 @@ fig.add_trace(go.Scatter(
     y=above_threshold,
     mode='lines',
     name=get_name(True),  # Dynamic name for win >= 50
-    line=dict(color='green', width=2)
+    line=get_line_attrs("green", 2)  # Dynamic line attributes
 ))
 
 # Add trace for win < 50 (red line)
@@ -329,39 +332,34 @@ fig.add_trace(go.Scatter(
     y=below_threshold,
     mode='lines',
     name=get_name(False),  # Dynamic name for win < 50
-    line=dict(color='red', width=2)
+    line=get_line_attrs("red", 2)  # Dynamic line attributes
 ))
 
-# Add dashed line at 50% probability
-fig.add_shape(
-    type="line",
-    x0=x.min(),
-    x1=x.max(),
-    y0=50,
-    y1=50,
-    line=dict(color="blue", width=1, dash="dash"),
-)
+# Add dashed line at 50% probability using lambda for shape attributes
+get_shape_attrs = lambda color, width, dash: {"type": "line", "x0": x.min(), "x1": x.max(), "y0": 50, "y1": 50, "line": {"color": color, "width": width, "dash": dash}}
+fig.add_shape(**get_shape_attrs("blue", 1, "dash"))
 
 # Update layout
 fig.update_layout(
     title="Win Percentage Graph",
     xaxis_title="Over",
-    yaxis=dict(
-        range=[-10, 110],
-        tickvals=[-10, 0, 50, 100, 110],
-        ticktext=[
+    yaxis={
+        "range": [-10, 110],
+        "tickvals": [-10, 0, 50, 100, 110],
+        "ticktext": [
             gf['bowlingTeam_x'].values[0],
             '0%',
             "50%",
             '100%',
             gf['battingTeam_x'].values[0]
         ],
-        showgrid=False
-    ),
+        "showgrid": False
+    },
     showlegend=True
 )
 
 st.write(fig)
+
 
 
 
