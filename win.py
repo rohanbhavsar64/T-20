@@ -360,51 +360,73 @@ fig.update_layout(
 
 st.write(fig)
 import plotly.graph_objects as go
-import numpy as np
 
 fig = go.Figure()
-
 x, y = temp_df['end_of_over'], temp_df['win']
-colors = ['green' if val >= 50 else 'red' for val in y]
 
-# Lambdas for creating attributes
-get_line = lambda color: {"color": color}
-get_marker = lambda size, color, showscale: {"size": size, "color": color, "showscale": showscale}
-get_shape = lambda x0, x1, y0, y1, color, width, dash: {"type": "line", "x0": x0, "x1": x1, "y0": y0, "y1": y1, "line": {"color": color, "width": width, "dash": dash}}
+# Function to generate line segments based on condition
+def get_segments(x, y):
+    segments = []
+    for i in range(len(y) - 1):
+        if y[i] >= 50 and y[i + 1] >= 50:
+            segments.append((x[i], x[i + 1], y[i], y[i + 1], 'green'))
+        elif y[i] < 50 and y[i + 1] < 50:
+            segments.append((x[i], x[i + 1], y[i], y[i + 1], 'red'))
+        else:
+            mid_x = (x[i] + x[i + 1]) / 2
+            mid_y = 50
+            if y[i] >= 50:
+                segments.append((x[i], mid_x, y[i], mid_y, 'green'))
+                segments.append((mid_x, x[i + 1], mid_y, y[i + 1], 'red'))
+            else:
+                segments.append((x[i], mid_x, y[i], mid_y, 'red'))
+                segments.append((mid_x, x[i + 1], mid_y, y[i + 1], 'green'))
+    return segments
 
-# Add trace
-fig.add_trace(go.Scatter(
-    x=x,
-    y=y,
-    mode='lines+markers',
-    line={**get_line('rgba(0,0,0,0)')},  # Transparent line
-    marker={**get_marker(8, colors, False)},  # Dynamic marker colors
-    name="Win Probability"
-))
+# Get line segments
+segments = get_segments(x, y)
+
+# Add traces for each segment
+for segment in segments:
+    fig.add_trace(go.Scatter(
+        x=[segment[0], segment[1]],
+        y=[segment[2], segment[3]],
+        mode='lines',
+        line=dict(color=segment[4], width=2),
+        showlegend=False
+    ))
 
 # Add dashed line at 50% probability
-fig.add_shape(**get_shape(x.min(), x.max(), 50, 50, "blue", 1, "dash"))
+fig.add_shape(
+    type="line",
+    x0=x.min(),
+    x1=x.max(),
+    y0=50,
+    y1=50,
+    line=dict(color="blue", width=1, dash="dash")
+)
 
 # Update layout
 fig.update_layout(
     title="Win Percentage Graph",
     xaxis_title="Over",
-    yaxis={
-        "range": [-10, 110],
-        "tickvals": [-10, 0, 50, 100, 110],
-        "ticktext": [
+    yaxis=dict(
+        range=[-10, 110],
+        tickvals=[-10, 0, 50, 100, 110],
+        ticktext=[
             gf['bowlingTeam_x'].values[0],
             '0%',
             "50%",
             '100%',
             gf['battingTeam_x'].values[0]
         ],
-        "showgrid": False
-    },
+        showgrid=False
+    ),
     showlegend=False
 )
 
 st.write(fig)
+
 
 
 
