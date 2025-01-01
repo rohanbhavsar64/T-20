@@ -300,38 +300,23 @@ fig.update_layout(
 
 st.write(fig)
 
-import requests
-from bs4 import BeautifulSoup
+import streamlit as st
 from PIL import Image
 from io import BytesIO
-import streamlit as st
+import requests
 
-# Define the URL of the webpage containing the image
-url = "https://www.gettyimages.co.uk/detail/news-photo/steve-smith-of-australia-poses-for-a-portrait-ahead-of-the-news-photo/1713069278"
+# Image URL extracted from the HTML
+image_url = "https://img1.hscicdn.com/image/upload/f_auto,t_h_100_2x/lsci/db/PICTURES/CMS/385800/385819.2.png"
 
-# Fetch the webpage
-response = requests.get(url)
+# Download the image from the URL
+response = requests.get(image_url)
 if response.status_code == 200:
-    # Parse the HTML content
-    soup = BeautifulSoup(response.content, 'html.parser')
+    # Open the image using PIL
+    image = Image.open(BytesIO(response.content))
     
-    # Extract the image URL from the meta tag with itemprop="contentUrl"
-    img_tag = soup.find('meta', {'itemprop': 'content'})
-    if img_tag:
-        img_url = img_tag['content']
-        
-        # Download the image
-        img_response = requests.get(img_url)
-        if img_response.status_code == 200:
-            # Open the image using PIL
-            image = Image.open(BytesIO(img_response.content))
-            
-            # Display the image using Streamlit
-            st.title("Steve Smith Portrait")
-            st.image(image, caption="Steve Smith of Australia - ICC Men's Cricket World Cup 2023", use_column_width=True)
-        else:
-            st.error("Failed to fetch the image.")
-    else:
-        st.error("Image metadata not found.")
+    # Display the image in Streamlit
+    st.title("Rohit Sharma")
+    st.image(image, caption="Rohit Sharma", width=128)
 else:
-    st.error("Failed to fetch the licensing page.")
+    st.error("Failed to fetch the image.")
+
