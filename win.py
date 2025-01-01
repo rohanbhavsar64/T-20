@@ -300,27 +300,41 @@ fig.update_layout(
 
 st.write(fig)
 
-import streamlit as st
+import requests
+from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
-import requests
+import streamlit as st
 
-# Extracted URL from the provided HTML
-image_url = "https://www.gettyimages.co.uk/photos/steve-smith-portrait"
+# Define the URL of the webpage containing the image
+url = "https://www.gettyimages.co.uk/photos/steve-smith-portrait"
 
-# Download the image from the URL
-response = requests.get(image_url)
+# Fetch the webpage
+response = requests.get(url)
 if response.status_code == 200:
-    # Open the image using PIL
-    image = Image.open(BytesIO(response.content))
-    
-    # Display the image in Streamlit
-    st.title("Steve Smith Portrait")
-    st.image(image, caption="Steve Smith of Australia - ICC Men's Cricket World Cup 2023", use_column_width=True)
+    # Parse the HTML content
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Find the image tag using its attributes
+    img_tag = soup.find('meta', {'itemprop': 'contentUrl'})
+    if img_tag:
+        img_url = img_tag['content']
+
+        # Download the image
+        img_response = requests.get(img_url)
+        if img_response.status_code == 200:
+            # Open the image using PIL
+            image = Image.open(BytesIO(img_response.content))
+
+            # Display the image using Streamlit
+            st.title("Steve Smith Portrait")
+            st.image(image, caption="Steve Smith of Australia", use_column_width=True)
+        else:
+            st.error("Failed to download the image.")
+    else:
+        st.error("Image tag not found.")
 else:
-    st.error("Failed to fetch the image.")
-
-
+    st.error("Failed to fetch the webpage.")
 
 
 
