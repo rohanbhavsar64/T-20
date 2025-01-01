@@ -308,13 +308,13 @@ y = temp_df['win']
 get_segment = lambda condition: [v if condition(i) else None for i, v in enumerate(y)]
 
 # Lambda function for trace names
-get_name = lambda condition: "Win >= 50%" if condition else "Win < 50%"
+get_name = lambda condition: gf['battingTeam_x'].values[0] if condition else gf['bowlingTeam_x'].values[0]
 
 # Lambda for line attributes
 get_line_attrs = lambda color, width: {"color": color, "width": width}
 
 # Generate segments using the lambda function
-above_threshold = get_segment(lambda i: y[i] > 50)  # Values where win >= 50
+above_threshold = get_segment(lambda i: y[i] >= 50)  # Values where win >= 50
 below_threshold = get_segment(lambda i: y[i] < 50)   # Values where win < 50
 
 # Add trace for win >= 50 (green line)
@@ -322,7 +322,7 @@ fig.add_trace(go.Scatter(
     x=x,
     y=above_threshold,
     mode='lines',
-    name=get_name(true),  # Dynamic name for win >= 50
+    name=get_name(True),  # Dynamic name for win >= 50
     line=get_line_attrs("green", 2)  # Dynamic line attributes
 ))
 
@@ -331,7 +331,7 @@ fig.add_trace(go.Scatter(
     x=x,
     y=below_threshold,
     mode='lines',
-    name=get_name(false),  # Dynamic name for win < 50
+    name=get_name(False),  # Dynamic name for win < 50
     line=get_line_attrs("red", 2)  # Dynamic line attributes
 ))
 
@@ -359,6 +359,7 @@ fig.update_layout(
 )
 
 st.write(fig)
+
 
 
 
