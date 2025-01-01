@@ -315,7 +315,8 @@ if response.status_code == 200:
     # Parse the HTML content
     soup = BeautifulSoup(response.content, 'html.parser')
     title=''
-    a_tag = soup.find('a', title=True)
+    div_tag = soup.find(class_='ds-popper-wrapper ds-inline')
+    a_tag = div_tag.find('a', title=True)
     if a_tag:
         title = a_tag['title']
         print(f"Title attribute: {title}")
