@@ -222,7 +222,7 @@ temp_df,target = match_progression(gf,100001,pipe)
 #temp_df
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['win'], mode='lines',name=gf['battingTeam_x'].values[0],width=4))
-fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines',marker_color='yellow',name=gf['bowlingTeam_x'].values[0],width=4))
+fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines',marker_color='yellow',name=gf['bowlingTeam_x'].values[0],line={'width': 10}))
 fig.update_layout(title='WIN PERCENTAGE GRAPH')
 st.write(fig)
 
