@@ -203,7 +203,7 @@ df['wicket_in_over']=-df['wic']
 fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'],marker_color='blue',name='Runs'))
 fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'],marker_color='red',name='Wickets'))
 fig.update_layout(barmode='stack')
-fig.add_trace(go.Bar(x=df1['over'], y=df1['runs_in_over'],marker_color='grren',name='Runs'))
+fig.add_trace(go.Bar(x=df1['over'], y=df1['runs_in_over'],marker_color='green',name='Runs'))
 fig.add_trace(go.Bar(x=df1['over'], y=df1['wicket_in_over'],marker_color='red',name='Wickets'))
 fig.update_layout(barmode='stack')
 st.write(fig)
