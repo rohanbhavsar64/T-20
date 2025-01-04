@@ -233,7 +233,7 @@ fig.update_layout(
 )
 
 # Display the figure
-fig.show()
+st.write(fig)
 
 
 def match_progression(x_df,Id,pipe):
