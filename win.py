@@ -211,29 +211,30 @@ import plotly.graph_objects as go
 # Assuming df and df1 are your DataFrames
 fig = go.Figure()
 
-# Trace 1: Runs for df
+# Trace 1: Runs for Team 1
 fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'], marker_color='blue', name='Runs (Team 1)'))
 
-# Trace 2: Wickets for df stacked on Runs (Team 1)
+# Trace 2: Wickets for Team 1 stacked on Runs (Team 1)
 fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'], marker_color='red', name='Wickets (Team 1)', base=df['runs_in_over']))
 
-# Trace 3: Runs for df1
-fig.add_trace(go.Bar(x=df1['over'], y=df1['runs_in_over'], marker_color='green', name='Runs (Team 2)'))
+# Trace 3: Runs for Team 2
+fig.add_trace(go.Bar(x=df1['over'], y=df1['runs_in_over'], marker_color='green', name='Runs (Team 2)', offsetgroup=1))
 
-# Trace 4: Wickets for df1 stacked on Runs (Team 2)
-fig.add_trace(go.Bar(x=df1['over'], y=df1['wic'], marker_color='red', name='Wickets (Team 2)', base=df1['runs_in_over']))
+# Trace 4: Wickets for Team 2 stacked on Runs (Team 2)
+fig.add_trace(go.Bar(x=df1['over'], y=df1['wic'], marker_color='red', name='Wickets (Team 2)', base=df1['runs_in_over'], offsetgroup=1))
 
 # Update layout
 fig.update_layout(
-    barmode='relative',  # Ensures stacking within the same group (overlap grouped bars)
-    title='Stacked Runs and Wickets',
+    barmode='overlay',  # Ensures stacking for specific bars while others remain side-by-side
+    title='Customized Stacked and Grouped Bar Chart',
     xaxis_title='Over',
     yaxis_title='Count',
     legend_title='Legend',
 )
 
 # Display the figure
-st.write(fig)
+fig.show()
+
 
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
