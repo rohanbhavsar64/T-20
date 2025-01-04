@@ -179,10 +179,7 @@ else:
                 st.write(winner[0] + ' Won')
 import pickle
 # Specify the path to your pickle file
-pickle_file_path = 'pipe.pkl'
 
-with open(pickle_file_path, 'rb') as file:
-    pipe = pickle.load(file)
 df['battingTeam_x']=df['batting_team']
 df['bowlingTeam_x']=df['bowling_team']
 df['runs_x_y']=df['target']
