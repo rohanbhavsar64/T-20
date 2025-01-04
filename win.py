@@ -18,8 +18,11 @@ sf = pd.read_csv('flags_iso.csv')
 
 st.header('T20 MATCH ANALYSIS')
 o=20
-o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)') or 20
-h = st.text_input('Enter the URL (ESPN CRICINFO > Select Match > Click On Overs):') or str('https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison')
+col1,col2=st.columns(2)
+with col1:
+    o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)') or 20
+with col2:
+    h = st.text_input('Enter the URL (ESPN CRICINFO > Select Match > Click On Overs):') or str('https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison')
 
 if h == 'https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison':
     st.write('Enter Your URL')
