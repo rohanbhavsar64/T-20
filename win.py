@@ -200,10 +200,10 @@ fig.update_layout(title='Score Comperision')
 st.write(fig)    
 fig = go.Figure()
 df['wicket_in_over']=-df['wic']
-fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'],marker_color='blue',name='Runs'))
+fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'],marker_color='blue',name=gf['battingTeam_x'].values[0]))
 #fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'],marker_color='red',name='Wickets'))
-fig.add_trace(go.Bar(x=df1['over'], y=df1['runs_in_over'],marker_color='green',name='Runs'))
-#fig.add_trace(go.Bar(x=df1['over'], y=df1['wic'],marker_color='red',name='Wickets'))
+fig.add_trace(go.Bar(x=df1['over'], y=df1['runs_in_over'],marker_color='green',name=gf['bowlingTeam_x'].values[0]))
+#fig.add_trace(go.Bar(x=df1['over'], y=df1['wic'],marker_color='red',name='Wickets',name=gf['bowlingTeam_x'].values[0]))
 fig.update_layout(title='Innings Progression')
 st.write(fig)
 
