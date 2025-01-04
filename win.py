@@ -215,7 +215,7 @@ fig = go.Figure()
 fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'], marker_color='blue', name='Runs (Team 1)'))
 
 # Trace 2: Wickets for Team 1 stacked on Runs (Team 1)
-fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'], marker_color='red', name='Wickets (Team 1)', base=df['runs_in_over']))
+fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'], marker_color='red', name='Wickets (Team 1)', base=df['runs_in_over'], offsetgroup=1))
 
 # Trace 3: Runs for Team 2
 fig.add_trace(go.Bar(x=df1['over'], y=df1['runs_in_over'], marker_color='green', name='Runs (Team 2)', offsetgroup=1))
