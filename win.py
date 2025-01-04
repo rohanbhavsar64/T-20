@@ -223,7 +223,7 @@ if middle.button("Innings Progression",use_container_width=True):
 #fig.add_trace(go.Bar(x=df1['over'], y=df1['wic'],marker_color='red',name='Wickets',name=gf['bowlingTeam_x'].values[0]))
     fig.update_layout(title='Innings Progression')
     st.write(fig)
-if right.button("WIN PERCENTAGE GRAPH",type="secondary",icon='C:\Users\SMART COMPUTER\Desktop\download.png',use_container_width=True):
+if right.button("WIN PERCENTAGE GRAPH",type="secondary",use_container_width=False):
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['win'], mode='lines',marker_color='purple',name=gf['battingTeam_x'].values[0],line={'width': 5}))
     fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines',marker_color='#FFD700',name=gf['bowlingTeam_x'].values[0],line={'width': 5}))
