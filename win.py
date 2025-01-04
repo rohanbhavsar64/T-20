@@ -190,8 +190,8 @@ else:
     gf=df[['battingTeam_x','bowlingTeam_x','city_y','runs_left','balls_left','wickets','runs_x_y','crr','rrr','last_five_runs','match_id']].iloc[:o]
 df=df.iloc[:o]
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=df['over'], y=df['score'], mode='lines',marker_color='green',name=gf['battingTeam_x'].values[0]))
-fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',marker_color='red',name=gf['bowlingTeam_x'].values[0]))
+fig.add_trace(go.Scatter(x=df['over'], y=df['score'], mode='lines',marker_color='green',name=gf['battingTeam_x'].values[0],line={'width': 5}))
+fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',marker_color='red',name=gf['bowlingTeam_x'].values[0],line={'width': 5}))
 fig.update_layout(title='Score Comperision')
 
 st.write(fig)    
