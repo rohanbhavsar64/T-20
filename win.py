@@ -90,6 +90,9 @@ df = pd.DataFrame(dict)
 
 df['score'] = df['score'].astype('int')
 df1['inng1'] = df1['inng1'].astype('int')
+df1['previous_score'] = df1['inng1'].shift(1)
+df1['previous_score'].loc[0] = 0
+df['runs_in_over'] = df1['inng1'] - df1['previous_score']
 df1['wickets'] = df1['wickets'].astype('int')
 df1['previous_wickets'] = df1['wickets'].shift(1)
 df1['previous_wickets'].loc[0] = 0
@@ -199,7 +202,10 @@ fig = go.Figure()
 df['wicket_in_over']=-df['wic']
 fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'],marker_color='blue',name='Runs'))
 fig.add_trace(go.Bar(x=df['over'], y=df['wicket_in_over'],marker_color='red',name='Wickets'))
-fig.update_layout(barmode='stack', title='Innings Progression')
+fig.update_layout(barmode='stack')
+fig.add_trace(go.Bar(x=df1['over'], y=df1['runs_in_over'],marker_color='grren',name='Runs'))
+fig.add_trace(go.Bar(x=df1['over'], y=df1['wicket_in_over'],marker_color='red',name='Wickets'))
+fig.update_layout(barmode='stack')
 st.write(fig)
 def match_progression(x_df,Id,pipe):
     match = x_df[x_df['match_id'] ==Id]
