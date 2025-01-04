@@ -208,13 +208,13 @@ def match_progression(x_df,Id,pipe):
 temp_df,target = match_progression(gf,100001,pipe)
 #temp_df
 left, middle, right = st.columns(3)
-if left.button("Plain button", use_container_width=True):
+if left.button("Score Compression", use_container_width=True):
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=df['over'], y=df['score'], mode='lines',marker_color='grey',name=gf['battingTeam_x'].values[0],line={'width': 4}))
     fig.add_trace(go.Scatter(x=df1['over'], y=df1['inng1'], mode='lines',marker_color='red',name=gf['bowlingTeam_x'].values[0],line={'width': 4}))
     fig.update_layout(title='Score Comperision')
     st.write(fig) 
-if middle.button("Emoji button", icon="😃", use_container_width=True):
+if middle.button("Innings Progression", icon="😃", use_container_width=True):
     fig = go.Figure()
     df['wicket_in_over']=-df['wic']
     fig.add_trace(go.Bar(x=df['over'], y=df['runs_in_over'],marker_color='blue',name=gf['battingTeam_x'].values[0]))
@@ -223,7 +223,7 @@ if middle.button("Emoji button", icon="😃", use_container_width=True):
 #fig.add_trace(go.Bar(x=df1['over'], y=df1['wic'],marker_color='red',name='Wickets',name=gf['bowlingTeam_x'].values[0]))
     fig.update_layout(title='Innings Progression')
     st.write(fig)
-if right.button("Material button", icon=":material/mood:", use_container_width=True):
+if right.button("WIN PERCENTAGE GRAPH", icon=":material/mood:", use_container_width=True):
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['win'], mode='lines',marker_color='purple',name=gf['battingTeam_x'].values[0],line={'width': 5}))
     fig.add_trace(go.Scatter(x=temp_df['end_of_over'], y=temp_df['lose'], mode='lines',marker_color='yellow',name=gf['bowlingTeam_x'].values[0],line={'width': 5}))
