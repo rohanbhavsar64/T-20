@@ -26,7 +26,7 @@ with col2:
 url='https://static.cricinfo.com/rss/livescores.xml'
 ru=requests.get(url)
 import xml.etree.ElementTree as ET
-root = ET.fromstring(r.text)
+root = ET.fromstring(ru.text)
 
 # Find all item elements and extract their links
 links = []
