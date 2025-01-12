@@ -33,7 +33,7 @@ links = []
 for item in root.findall('.//item'):
     link = item.find('link').text.strip()
     links.append(link)
-h=links[-5]
+h=links[-5].replace('live-cricket-score','match-overs-comparison')
 if h == 'https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison':
     st.write('Enter Your URL')
 
