@@ -32,6 +32,8 @@ for item in root.findall('.//item'):
 o=20
 o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)') or 20
 h=st.text_input('URL')
+if h is None:
+    h='https://www.espncricinfo.com/series/big-bash-league-2024-25-1443056/melbourne-renegades-vs-melbourne-stars-32nd-match-1443088/match-overs-comparison'
 if h == 'https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison':
     st.write('Enter Your URL')
 
