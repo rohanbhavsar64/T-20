@@ -28,6 +28,7 @@ for item in root.findall('.//item'):
     link = item.find('link').text.strip()
     links.append(link)
 h=links[-5].replace('live-cricket-score','match-overs-comparison')
+st.write(h)
 o=20
 o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)') or 20
 
