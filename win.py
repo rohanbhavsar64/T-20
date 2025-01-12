@@ -17,17 +17,7 @@ with open('pipe.pkl', 'rb') as file:
 sf = pd.read_csv('flags_iso.csv')
 
 st.header('T20 MATCH ANALYSIS')
-url='https://static.cricinfo.com/rss/livescores.xml'
-ru=requests.get(url)
-import xml.etree.ElementTree as ET
-root = ET.fromstring(ru.text)
 
-# Find all item elements and extract their links
-links = []
-for item in root.findall('.//item'):
-    link = item.find('link').text.strip()
-    links.append(link)
-h=links[-5].replace('live-cricket-score','match-overs-comparison')
 o=20
 col1,col2=st.columns(2)
 with col1:
