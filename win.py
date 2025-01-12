@@ -128,7 +128,7 @@ df['last_five_runs'] = df['runs'].rolling(window=4).sum()
 df['wickets_in_over'] = df['wickets'].diff()
 df['last_five_wickets'] = df['wickets_in_over'].rolling(window=4).sum()
 df['match_id'] = 100001
-#st.write(df)
+st.write(df)
 neg_idx = df1[df1['inng1'] < 0].diff().index
 if not neg_idx.empty:
     df1 = df1[:neg_idx[0]]
