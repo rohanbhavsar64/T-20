@@ -17,13 +17,19 @@ with open('pipe.pkl', 'rb') as file:
 sf = pd.read_csv('flags_iso.csv')
 
 st.header('T20 MATCH ANALYSIS')
+url='https://static.cricinfo.com/rss/livescores.xml'
+ru=requests.get(url)
+import xml.etree.ElementTree as ET
+root = ET.fromstring(ru.text)
 
+# Find all item elements and extract their links
+links = []
+for item in root.findall('.//item'):
+    link = item.find('link').text.strip()
+    links.append(link)
+h=links[-5].replace('live-cricket-score','match-overs-comparison')
 o=20
-col1,col2=st.columns(2)
-with col1:
-    o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)') or 20
-with col2:
-    h = st.text_input('Enter the URL (ESPN CRICINFO > Click On Overs):') or str('https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison')
+o = st.number_input('Over No.(Not Greater Than Overs Played in 2nd Innings)') or 20
 
 if h == 'https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2024-1411166/australia-vs-india-51st-match-super-eights-group-1-1415751/match-overs-comparison':
     st.write('Enter Your URL')
